@@ -18,7 +18,7 @@ Follow this file for any visual work.
 | `surface` | `#FFFFFF` | Header, cards, input on the light UI |
 | `border` | `#E4E7EB` | Dividers/borders on the light UI |
 | `ink` | `#111827` | Primary text on the light UI |
-| `muted` | `#6B7280` | Secondary text on the light UI |
+| `muted` | `#4B5563` | Secondary text on the light UI. ~7.5:1 against white (was `#6B7280`, ~4.84:1, too close to the 4.5:1 AA floor for text-sm/text-xs). |
 | `primary` | `#4F46E5` | Buttons, focus rings, the loading spinner |
 | `primary-hover` | `#4338CA` | Hover state for `primary` |
 | `report-bg` | `#F8F9FC` | Results panel background — same light family as `bg`, one shade apart for subtle depth |
@@ -26,7 +26,7 @@ Follow this file for any visual work.
 | `report-panel-alt` | `#F3F4F6` | Finding card background (one step darker than `report-panel`) |
 | `report-border` | `#E5E7EB` | Dividers/borders in results |
 | `report-ink` | `#111827` | Primary text in results (same as `ink`) |
-| `report-muted` | `#6B7280` | Secondary text in results (same as `muted`) |
+| `report-muted` | `#4B5563` | Secondary text in results (same as `muted`) |
 | `amber` | `#F5A623` | The one score accent — gauge stroke, category-badge fill. **Never as text or a border** — it's ~2:1 contrast against every light surface here, well under WCAG's 4.5:1 (text) / 3:1 (non-text) minimums. |
 | `amber-soft` | `rgba(245,166,35,0.15)` | Tinted background behind a score badge |
 | `amber-text` | `#92400E` | The readable version of the score accent — any time amber meaning needs to be legible text or a border (error states, the "AI-assisted analysis" tag), not a fill/stroke. ~7:1 against white, ~6:1 against `amber-soft`. |

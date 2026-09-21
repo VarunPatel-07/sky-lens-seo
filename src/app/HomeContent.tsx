@@ -10,7 +10,17 @@ import { UrlInputForm } from "@/components/UrlInputForm/UrlInputForm";
 import { STAGGER_REVEAL_CONTAINER_VARIANTS, STAGGER_REVEAL_ITEM_VARIANTS } from "@/constants/motion.constant";
 import { runAudit } from "@/lib/api/auditApi";
 import { AuditResult } from "@/types/audit.interface";
-import { HERO_FEATURE_PILLS, HERO_HEADLINE, HERO_SUBTEXT } from "./page.constant";
+import {
+  HERO_FEATURE_PILLS,
+  HERO_HEADLINE,
+  HERO_SUBTEXT,
+  HOMEPAGE_CHECKS,
+  HOMEPAGE_CHECKS_HEADING,
+  HOMEPAGE_CHECKS_SUBTEXT,
+  HOMEPAGE_INTRO,
+  HOMEPAGE_STEPS,
+  HOMEPAGE_STEPS_HEADING,
+} from "./page.constant";
 
 type ViewState = "idle" | "loading" | "success" | "error";
 
@@ -75,12 +85,10 @@ export function HomeContent() {
               transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
             />
 
-            <motion.h1
-              variants={STAGGER_REVEAL_ITEM_VARIANTS}
-              className="relative bg-linear-to-r from-primary via-ink to-primary-hover bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl"
-            >
+            {/* Plain element, not motion-hidden: it's the LCP candidate, and opacity:0 until hydration would delay paint. */}
+            <h1 className="relative bg-linear-to-r from-primary via-ink to-primary-hover bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl">
               {HERO_HEADLINE}
-            </motion.h1>
+            </h1>
 
             <motion.p variants={STAGGER_REVEAL_ITEM_VARIANTS} className="relative max-w-md text-lg text-muted">
               {HERO_SUBTEXT}
@@ -117,6 +125,37 @@ export function HomeContent() {
             <AuditReport result={result} />
           </div>
         )}
+
+        <section className="mt-20 flex w-full max-w-3xl flex-col items-center gap-10 text-center">
+          <p className="text-base leading-relaxed text-muted">{HOMEPAGE_INTRO}</p>
+
+          <div className="flex w-full flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-1">
+              <h2 className="text-2xl font-semibold text-ink">{HOMEPAGE_CHECKS_HEADING}</h2>
+              <p className="text-sm text-muted">{HOMEPAGE_CHECKS_SUBTEXT}</p>
+            </div>
+            <div className="grid w-full gap-4 text-left sm:grid-cols-2">
+              {HOMEPAGE_CHECKS.map((check) => (
+                <div key={check.title} className="flex flex-col gap-1.5 rounded-lg border border-border bg-surface p-5">
+                  <p className="font-semibold text-ink">{check.title}</p>
+                  <p className="text-sm leading-relaxed text-muted">{check.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex w-full flex-col items-center gap-4">
+            <h2 className="text-2xl font-semibold text-ink">{HOMEPAGE_STEPS_HEADING}</h2>
+            <ol className="flex w-full flex-col gap-3 text-left">
+              {HOMEPAGE_STEPS.map((step, index) => (
+                <li key={step} className="flex gap-3 text-sm leading-relaxed text-muted">
+                  <span className="font-mono font-semibold text-primary">{String(index + 1).padStart(2, "0")}</span>
+                  <span>{step}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
       </main>
 
       <SiteFooter />

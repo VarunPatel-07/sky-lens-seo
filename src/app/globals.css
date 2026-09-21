@@ -6,7 +6,9 @@
   --surface: #ffffff;
   --border: #e4e7eb;
   --ink: #111827;
-  --muted: #6b7280;
+  /* #6b7280 measured ~4.84:1 on white, too close to the 4.5:1 AA floor at
+     text-sm/text-xs; this shade holds ~7.5:1 with the same "secondary text" role. */
+  --muted: #4b5563;
   --primary: #4f46e5;
   --primary-hover: #4338ca;
 
@@ -17,7 +19,7 @@
   --report-panel-alt: #f3f4f6;
   --report-border: #e5e7eb;
   --report-ink: #111827;
-  --report-muted: #6b7280;
+  --report-muted: #4b5563;
 
   /* Shared score accent */
   --amber: #f5a623;
