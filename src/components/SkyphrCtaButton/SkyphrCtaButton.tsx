@@ -1,54 +1,50 @@
-import Link from "next/link";
-import clsx from "clsx";
-import { SkyphrCtaButtonProps } from "./SkyphrCtaButton.interface";
+import { GET_BUTTON_STYLE } from "@/constants/common.constant";
+import { ButtonEleInterface } from "@/types/audit.interface";
+import { GoArrowUpRight } from "react-icons/go";
+import { twMerge } from "tailwind-merge";
 
-export function SkyphrCtaButton({ href, label, variant = "primary", external = false }: SkyphrCtaButtonProps) {
-  const isPrimary = variant === "primary";
+export function SkyphrCtaButton({
+  children,
+  btnStyle,
+  className,
+  href,
+  target,
+  rel,
+  theme = "DARK",
+  ...props
+}: ButtonEleInterface) {
+  const { parentWrapper, childrenWrapper } = GET_BUTTON_STYLE(btnStyle, theme);
+  const title = typeof props.title === "string" ? props.title : typeof children === "string" ? children : undefined;
+
+  let wrapperElem: React.ElementType = "button";
+  if (href) wrapperElem = "a";
+  const Tag = wrapperElem as React.ElementType;
 
   return (
-    <Link
-      href={href}
-      target={external ? "_blank" : undefined}
-      rel={external ? "noopener noreferrer" : undefined}
-      className={clsx(
-        "group/btn relative inline-flex min-h-[45px] items-center overflow-hidden rounded-full px-6 font-instrument-sans text-sm font-semibold ring-1 transition-colors duration-300 sm:text-base",
-        isPrimary
-          ? "bg-(--cta-button-background) text-(--text-white-color) ring-(--cta-button-background)"
-          : "bg-transparent text-(--text-main-color) ring-(--skyphr-border-color) hover:text-(--text-white-color)",
-      )}
-    >
-      {!isPrimary && (
-        <span
-          aria-hidden
-          className="absolute inset-0 origin-center scale-0 rounded-full bg-(--cta-button-background) transition-transform duration-300 group-hover/btn:scale-100"
-        />
-      )}
-
-      <span
-        className={clsx(
-          "relative z-10 transition-transform duration-300",
-          isPrimary && "group-hover/btn:-translate-x-3",
-        )}
-      >
-        {label}
-      </span>
-
-      {isPrimary && (
-        <span
-          aria-hidden
-          className="relative z-10 ml-3 flex h-6 w-6 translate-x-8 items-center justify-center rounded-full bg-(--root-white-color) text-(--cta-button-background) opacity-0 transition-all duration-300 group-hover/btn:translate-x-0 group-hover/btn:opacity-100"
-        >
-          <svg viewBox="0 0 16 16" fill="none" className="h-3 w-3">
-            <path
-              d="M3 8h10M8.5 3.5 13 8l-4.5 4.5"
-              stroke="currentColor"
-              strokeWidth={1.5}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+    <Tag {...props} href={href} target={target} rel={rel} title={title} className={twMerge(parentWrapper, className)}>
+      {btnStyle === "CTA_PRIMARY" ? (
+        <span className="w-8 h-8 min-w-8 min-h-8 rounded-full bg-(--root-white-color) text-(--cta-button-background) flex items-center justify-center absolute top-1/2 -left-full -translate-y-1/2 group-hover/btn:left-1.5 transition-all duration-300">
+          <GoArrowUpRight className="font-semibold" />
         </span>
+      ) : (
+        <span
+          className={twMerge(
+            "absolute top-1/2 right-6 -translate-y-1/2 w-2 h-2 min-w-2 min-h-2 block rounded-full group-hover/btn:min-w-full group-hover/btn:min-h-full  group-hover/btn:right-0 transition-all duration-300",
+            theme === "DARK" ? "bg-(--root-white-color)" : "bg-(--root-black-color)",
+          )}></span>
       )}
-    </Link>
+      <span className={childrenWrapper}>{children}</span>
+      {btnStyle === "CTA_PRIMARY" ? (
+        <span className="w-8 h-8 min-w-8 min-h-8 rounded-full bg-(--root-white-color) text-(--cta-button-background) flex items-center justify-center absolute top-1/2 right-1.5 -translate-y-1/2 group-hover/btn:translate-x-[130%] transition-all duration-300">
+          <GoArrowUpRight className="font-semibold" />
+        </span>
+      ) : (
+        <span
+          className={twMerge(
+            "absolute top-1/2 right-6 -translate-y-1/2 min-w-0 min-h-0  block rounded-full group-hover/btn:min-h-2.5 group-hover/btn:min-w-2.5  transition-all duration-500 z-10",
+            theme === "DARK" ? "bg-(--root-black-color)" : "bg-(--root-white-color)",
+          )}></span>
+      )}
+    </Tag>
   );
 }

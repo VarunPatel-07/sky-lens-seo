@@ -1,3 +1,5 @@
+import { ButtonHTMLAttributes } from "react";
+
 export type AuditCategoryName =
   | "performance"
   | "seo"
@@ -38,4 +40,13 @@ export interface AuditErrorResponse {
   error: AuditErrorCode;
   message: string;
   source?: "pagespeed" | "openai";
+}
+
+export interface ButtonEleInterface extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: React.ReactNode;
+  btnStyle: "CTA_PRIMARY" | "CTA_SECONDARY";
+  href?: string;
+  target?: "_blank" | "_parent" | "_self" | "_top";
+  rel?: string;
+  theme?: "LIGHT" | "DARK";
 }
