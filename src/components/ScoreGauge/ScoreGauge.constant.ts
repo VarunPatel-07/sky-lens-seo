@@ -1,0 +1,2 @@
+export const SCORE_GAUGE_DEFAULT_SIZE_PX = 128;
+export const SCORE_GAUGE_STROKE_WIDTH = 10;

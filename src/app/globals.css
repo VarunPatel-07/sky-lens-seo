@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+:root {
+  /* Light UI — landing & loading */
+  --bg: #f4f5f7;
+  --surface: #ffffff;
+  --border: #e4e7eb;
+  --ink: #111827;
+  --muted: #6b7280;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+
+  /* Results panel — same light system as the rest of the app, one shade
+     lower for a subtle sense of depth rather than a separate dark mode */
+  --report-bg: #f8f9fc;
+  --report-panel: #ffffff;
+  --report-panel-alt: #f3f4f6;
+  --report-border: #e5e7eb;
+  --report-ink: #111827;
+  --report-muted: #6b7280;
+
+  /* Shared score accent */
+  --amber: #f5a623;
+  --amber-soft: rgba(245, 166, 35, 0.15);
+  /* #f5a623 is too light to pass contrast as text/borders on a light
+     surface (~2:1) — this darker shade is for exactly that: any place
+     amber needs to be legible foreground, not a fill or stroke. */
+  --amber-text: #92400e;
+
+  /* Secondary accent — non-score emphasis (e.g. "Fix:" labels) */
+  --teal: #0d9488;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+
+  --color-report-bg: var(--report-bg);
+  --color-report-panel: var(--report-panel);
+  --color-report-panel-alt: var(--report-panel-alt);
+  --color-report-border: var(--report-border);
+  --color-report-ink: var(--report-ink);
+  --color-report-muted: var(--report-muted);
+
+  --color-amber: var(--amber);
+  --color-amber-soft: var(--amber-soft);
+  --color-amber-text: var(--amber-text);
+  --color-teal: var(--teal);
+
+  --font-sans: var(--font-plex-sans);
+  --font-mono: var(--font-plex-mono);
+
+  /* Extra breakpoints for the Skyphr-branded content pages (About,
+     Contact, Privacy, Terms) — purely additive, doesn't change any
+     existing breakpoint used by the product UI. */
+  --breakpoint-xs: 30.6875rem;
+  --breakpoint-xmd: 61.9375rem;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+/* Skyphr brand theme — scoped token set for the About, Contact, Privacy,
+   and Terms pages, which carry Skyphr's own corporate identity rather
+   than SkyLens's product design system (see FRONTEND-DESIGN-SYSTEM.md).
+   Scoped to a wrapper class, not :root, so it never touches the
+   product UI's tokens above. */
+.skyphr-brand {
+  --cta-button-background: #3846da;
+  --root-black-color: #000000;
+  --root-white-color: #ffffff;
+  --text-main-color: #0f0f0f;
+  --text-secondary-color: #5f5f5f;
+  --text-white-color: #f2f2f2;
+  --about-us-card-bg: #f5f5f5;
+  --skyphr-border-color: #dddddd;
+}
+
+.font-instrument-sans {
+  font-family: var(--font-instrument-sans), sans-serif;
+}
+
+.font-playfair-display {
+  font-family: var(--font-playfair-display), serif;
+}
+
+.skyphr-container {
+  width: min(calc(100% - 32px), 1540px);
+  margin-inline: auto;
+}
+
+@media (min-width: 1200px) {
+  .skyphr-container {
+    width: min(calc(100% - 150px), 1540px);
+  }
+}
