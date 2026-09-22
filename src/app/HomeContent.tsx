@@ -61,7 +61,7 @@ export function HomeContent() {
   }
 
   return (
-    <div className="flex min-h-dvh flex-col">
+    <div className="flex min-h-dvh flex-col overflow-x-hidden">
       <SiteHeader />
 
       <main className="flex flex-1 flex-col">
