@@ -17,7 +17,7 @@ import {
 } from "./privacy.constant";
 
 const PAGE = {
-  title: "Privacy Policy - SkyLens",
+  title: "Privacy Policy - SkyLens by Skyphr",
   description: "How SkyLens, a Skyphr product, handles data when you run a website audit.",
   path: "/privacy",
 };

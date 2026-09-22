@@ -7,7 +7,7 @@ import { createPageMetadata } from "@/lib/seo/seo";
 import { AboutContent } from "./AboutContent";
 
 const PAGE = {
-  title: "About - SkyLens",
+  title: "About - SkyLens by Skyphr",
   description:
     "What SkyLens does, how it works, and how its performance, SEO, accessibility, and content checks are built by Skyphr.",
   path: "/about",

@@ -5,9 +5,9 @@ import { createPageMetadata } from "@/lib/seo/seo";
 import { HomeContent } from "./HomeContent";
 
 const PAGE = {
-  title: "SkyLens - Free Instant Website Audit",
+  title: "SkyLens - Free Instant Website Audit by Skyphr",
   description:
-    "Analyze page speed, SEO, accessibility, and content quality with real data. Get a scored, plain-language report in minutes - no sign-up needed.",
+    "SkyLens by Skyphr analyzes page speed, SEO, accessibility, and content quality with real data. Get a scored, plain-language report in minutes - no sign-up needed.",
   path: "/",
 };
 

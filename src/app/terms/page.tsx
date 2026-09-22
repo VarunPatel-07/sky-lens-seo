@@ -17,7 +17,7 @@ import {
 } from "./terms.constant";
 
 const PAGE = {
-  title: "Terms of Service - SkyLens",
+  title: "Terms of Service - SkyLens by Skyphr",
   description: "The terms that govern using SkyLens, a Skyphr product.",
   path: "/terms",
 };
